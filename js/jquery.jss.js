@@ -9,7 +9,6 @@
  *
  */
 
-// TODO test 0.4/0.5 IE support
 // TODO @import support
 // TODO IE conditional comments support
 // FIXME Safari 3 bug with media types not always being loaded correctly.
