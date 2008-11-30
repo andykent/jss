@@ -8,6 +8,7 @@
 	<title>Speed Test</title>
 	
 	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.livequery.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery.jss.js" type="text/javascript" charset="utf-8"></script>
 
 	<link rel="stylesheet" href="styles/test.css" type="text/css" charset="utf-8" />
@@ -18,6 +19,7 @@
 		$(document).ready(function() {
 			$.jss.disableCaching=0;
 			$.jss.debugMode=0;
+			$.jss.liveUpdates=1;
 			$.jss.addBehavior('alert', function(selector, value) { alert(value+' from '+selector); });
 			start = (new Date()).getTime();
 			$.jss.apply();

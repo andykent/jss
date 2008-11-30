@@ -48,6 +48,12 @@ only selectors that match one of these rules will be
 processed by JSS. This can greatly improve performance
 if you only have one or two selectors that need applying.
 
+$.jss.liveUpdates - Boolean - false
+Turn this option on to live update css styles as the page
+changes. You will need the livequery plugin installed to
+use this option. NOTE: this option is a significant 
+performance hit and should be considered an Alpha feature.
+
 $.jss.addBehavior('property', behaviourFunction('selector', 'value'))
 This function can be used to add callbacks to a css
 property, whenever the css property is found the callback is fired

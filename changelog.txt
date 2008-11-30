@@ -5,6 +5,7 @@ JSS Change Log
 * Adds support for css triggers, this allows you to provide a JS callback for a CSS selector, a simple use case would be to provide rounded corners to IE. [Thanks go to Angelo Berios for this idea]
 * support for a custom list of rel tags , this is mostly useful to stop JSS from snooping in rel="styleshet" includes
 * minor performance tweaks
+* Added experimental support for live page updates using the livequery plugin
 
 0.5
 

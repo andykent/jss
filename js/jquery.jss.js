@@ -12,7 +12,6 @@
 // TODO @import support
 // TODO IE conditional comments support
 // FIXME Safari 3 bug with media types not always being loaded correctly.
-// TODO Add livequery support where available for when adding new DOM elements when ever the DOM is modified. Will need to cache selectors and properties for this to work, should be optional, off by default $.jss.liveUpdates = true
 // TODO add basic :hover support
 
 (function($) {
@@ -44,6 +43,8 @@ $.jss = {
 	
 	relTypes: ['stylesheet', 'jss-stylesheet'], // types that jss will lookout for in html rel tags
 	
+	liveUpdates: false, // this option requires the livequery plugin, is Alpha and has a serious effect on performance
+	
 	apply: function(content) {
 		var selectors = [];
 		var jss = this;
@@ -62,7 +63,7 @@ $.jss = {
 			};
 		});
 		if(content) selectors.concat(this.parse(content)); // parse any passed in styles
-		this.applyBehaviors(selectors); // apply callbacks if any exist
+		this.applyBehaviors(selectors); // apply behaviors before filters
 		selectors = this.filterSelectors(selectors);
 		this.applySelectors(selectors);
 	},
@@ -123,18 +124,24 @@ $.jss = {
 		var result = null;
 		$.each(selectors, function(){ // load each of the matched selectors
 			if(jss.isUnderstoodSelector(this.selector)) return; // skip applying the selector if the browser already understands it.
-			if(jss.disableCaching) return $(this.selector).css(this.attributes); // cache is turned off so just apply styles
+			if(jss.disableCaching) return jss.applyStyles($(this.selector), this.attributes); // cache is turned off so just apply styles
 			if(jss.cache[this.selector]){ // check the cache
 				jss.debug('HIT',this.selector)
-				jss.cache[this.selector].css(this.attributes); // direct cache hit
+				jss.applyStyles(jss.cache[this.selector], this.attributes); // direct cache hit
 			} else if( result=jss.scanCache(this.selector) ) {
 				jss.debug('PARTIAL',result,result[0].find(result[1]))
-				result[0].find(result[1]).css(this.attributes); // partial cache hit
+				jss.applyStyles(result[0].find(result[1]), this.attributes); // partial cache hit
 			}	else {
 				jss.debug('MISS',this.selector)
-				jss.cache[this.selector] = $(this.selector).css(this.attributes); // cache miss
+				jss.cache[this.selector] = jss.applyStyles($(this.selector), this.attributes); // cache miss
 			};
 		});
+	},
+	
+	applyStyles: function($els,styles) {
+		if(this.livequery) $els.livequery(function() { $(this).css(styles); });
+		else $els.css(styles);
+		return $els;
 	},
 	
 	applyBehaviors: function(selectors){
