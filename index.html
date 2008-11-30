@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title>JSS</title>
+	
+	<style type="text/css" media="screen">
+	
+		body {
+			font: 14px/1.4 normal Tahoma, Arial, Sans-Serif;
+		}
+
+		h1 {
+			margin: 0;
+			padding: 1em 0 0 0;
+			font-size: 3em;
+			text-align: center;
+		}
+
+		h2 {
+			margin: 2em 0 0 0;
+			padding: 0;
+			font-size: 1.4em;
+			line-height: 1.1;
+		}
+
+		#page {
+			position: relative;
+			width: 420px;
+			margin: 0 auto;
+			text-align: justify;
+		}
+		
+	</style>
+	
+</head>
+
+<body>
+
+	<div id="page">
+		
+		<h1>JSS</h1>
+
+		<h2>What&#39;s this all about?</h2>
+		<p>JSS stands for Javascript Style Sheets, it is a jQuery plugin that allows you to take advantage of the full range of jQuery selectors accross all browsers from within your standard CSS files.</p>
+
+		<h2>How does it work?</h2>
+		<p>You simply include jQuery and JSS in your page and then call the <code>$.jss.apply()</code> function. All your styles that are between <code>&lt;style&gt;</code> tags or in externally loaded CSS files are parsed and analysed. Each selector is the piped through to jQuery and the styles are applied via it&#39;s <code>.css()</code> function.</p>
+		<p>The selectors and properties are limited to those understood by jQuery. JSS has been tested on IE 6+7, Firefox 2, Safari 3, Camino 1.5 &amp; Opera.</p>
+
+		<h2>Where can I see a demo?</h2>
+		<p>There is a <a href="test.html">speed test</a> which demonstrates some of the functionality available.</p>
+
+		<h2>How do I use Test Visuals</h2>
+		<p>A full explaination of the current API is available in the jss.js file.</p>
+		<p>This should get you started&hellip;</p>
+<pre><code>
+$(document).ready(function(){
+	$.jss.apply();
+});
+</code></pre>
+
+		<h2>Where can I get hold of it?</h2>
+		<p>You can <a href="packages/jss-0-4.zip">download the current version (0.4) here</a>.</p> 
+		<p>This version has several fixes and some cool new features, it is a recommended upgrade for all users.<br />
+			Remember this still isn't production ready code so please keep sending me your feedback and issues.<br />
+			Check-out the <a href="changelog.txt">changelog</a> for more details on what's new.</p>
+
+		<h2>What&#39;s next?</h2>
+		<p>Speed, speed, speed, if you have any better ideas or fancy helping out then please <a href="mailto:andrew.d.kent@gmail.com">get in touch</a>, I&#39;d love to hear from you.</p>
+		<ul>
+			<li>@import support</li>
+			<li>Speed improvements</li>
+			<li>Full documentation</li>
+			<li>Support for <code>:hover</code></li>
+			<li>Support for <code>rel="jss-stylesheet"</code> in link tags</li>
+			<li>Selective loading of stylesheets</li>
+		</ul>
+		
+	</div>
+	
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+JSS Change Log
+
+0.6
+
+* Adds support for css triggers, this allows you to provide a JS callback for a CSS selector, a simple use case would be to provide rounded corners to IE. [Thanks go to Angelo Berios for this idea]
+* support for a custom list of rel tags , this is mostly useful to stop JSS from snooping in rel="styleshet" includes
+* minor performance tweaks
+
+0.5
+
+* Added support for the 'rel' attribute. JSS will now only load linked styles if all the following conditions are met:
+- rel="stylesheet" or rel="jss-stylesheet" is set on the link element.
+- type="text/css" is set on the link element.
+- loadExternalStyles is set to true.
+* Added rel="jss-stylesheet" so a separate JSS stylesheet can be served up without browser parsing. This can be helpful if a browser is choking on certain selectors.
+* Added @JSS css comments support: this can be helpful if you have selectors that are not valid CSS selectors such as 'input:submit' these may choke the browsers css engine so we can easily mask them by wrapping them in comment which begins with @JSS. here is an example:
+/*@JSS input:submit { background:red; } */
+
+
+0.4
+
+* Parse order of external stylesheets could be incorrect due to the nature of AJAX calls, there is now a load queue so stylesheets get parsed in source order rather than load order. [Thanks to Daniel Wachsstock <d.wachss@prodigy.net> for reporting this]
+* We now skip applying a selector if the browser already understands it. This avoids cluttering the DOM with style information when it isn't needed. [Thanks to Daniel Wachsstock <d.wachss@prodigy.net> for all his help with this]
+* Added support for media types so stylesheets with a media type set are only applied if the media type is in effect. [Thanks again to Daniel Wachsstock <d.wachss@prodigy.net> for a bunch of the logic]
+* Added the $.jss.checkMediaTypes flag to enable/disable the media types support. Please disable it if you get issues, particularly in Safari 3.
+* Added better external stylesheet debugging.
+
+
+0.3
+
+* fixed IE support for parsing internal <style> tags.
+* wrapped plugin in a closure to avoid conflicts.
+* Now using jQuery.trim() so we can remove String.prototype which is ugly.
+* A minor speed improvement.
+
+
+0.2
+
+* Added support for $.jss.only to filter only a subset of selectors.
+* Major improvements to selector caching.
+* Added some better default exclusions to exclude :hover and simple selectors.
+* Fixed support for IE6 and Opera (except when in debug mode).
+* Package now includes a basic speed test.
+
+
+0.1
+
+* Initial release.

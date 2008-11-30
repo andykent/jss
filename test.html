@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title>Speed Test</title>
+	
+	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jss.js" type="text/javascript" charset="utf-8"></script>
+
+	<link rel="stylesheet" href="styles/test.css" type="text/css" charset="utf-8" />
+	<link rel="jss-stylesheet" href="styles/test2.css" type="text/css" media="screen" charset="utf-8" />
+	
+	<script type="text/javascript" charset="utf-8">
+		$.ajaxSetup({cache:false}); // disable the browser cache for these tests
+		$(document).ready(function() {
+			$.jss.disableCaching=0;
+			$.jss.debugMode=0;
+			$.jss.addBehavior('alert', function(selector, value) { alert(value+' from '+selector); });
+			start = (new Date()).getTime();
+			$.jss.apply();
+			end = (new Date()).getTime();
+      // setTimeout("alert('In page styles processed in '+(end-start)+'ms')",500);
+		});
+	</script>
+	
+	<style type="text/css">
+		
+		/* This is a test of internal styles */
+		
+		/* supported basic styles - ignored by jss */
+		
+		html>body { background-color: #f0f0f0; }
+		
+		#page { 
+		  width:10px; 
+		  alert: hello; 
+		}
+		
+		p.internal {
+			color: red;
+		}
+		
+		p:hover { background:pink; } /* hover style, ignored by jss as it is on the exclude list */
+		
+		/* mostly unsupported styles applied by jss */
+		
+		body>div#page:first {
+			width: 2%;
+			margin: 0 auto;
+		}
+		
+		body>div#page:first { /* full cache hit */
+			width: 30%;
+		}
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		body>div#page:first { /* lets hammer the cache */ width: 30%; }
+		
+		
+		body>div#page:first #block-1 { /* partial cache hit */
+			background: green;
+		}
+		body>div#page:first #block-2 { /* partial cache hit */
+			background: pink;
+		}
+		body>div#page:first #block-3 { /* partial cache hit */
+			background: blue;
+		}
+		body>div#page:first #block-3 { /* full cache hit */
+			background: yellow;
+		}
+		
+		p:has('strong') { color: #fff; background:#000;	}
+		
+		p:has('strong'):even { color: yellow;	} /* partial cache hit */
+		
+		p:has('strong'):odd { color: silver;	} /* partial cache hit */
+		
+		div#block-2~ol { font-size: .8em; }
+		
+		p:eq(1) {	text-decoration: underline;	}
+		p:eq(1) {	text-decoration: line-through;	} /* cache hit */
+		
+		p:eq(1) {	text-decoration: line-through;	}
+		
+		:header { color: orange; }
+		
+		
+	</style>
+	
+</head>
+
+<body>
+
+<div id="page">
+	
+	<h1 id="heading_1">This is a heading Level 1</h1>
+	
+	<p>A paragraph, <strong>strong</strong>, <em>em</em>.</p>
+	
+	<p>Another paragraph, with a list below</p>
+	
+	<ol>
+		<li>First list item</li>
+		<li>Second list item</li>
+		<li>Third list item</li>
+	</ol>
+	
+	<div id="block-1">
+		<p class="internal">this paragraph is inside a div called block-1</p>
+		<p class="internal">so it this paragraph as well</p>
+	</div>
+	
+	<h1 id="heading_2">This is a heading Level 1</h1>
+	
+	<p>A paragraph, <strong>strong</strong>, <em>em</em>.</p>
+	
+	<p>Another paragraph, with a list below</p>
+	
+	<ol>
+		<li>First list item</li>
+		<li>Second list item</li>
+		<li>Third list item</li>
+	</ol>
+	
+	<div id="block-2">
+		<p class="internal">this paragraph is inside a div called block-1</p>
+		<p class="internal">so it this paragraph as well</p>
+	</div>
+	
+	<h1 id="heading_3">This is a heading Level 1</h1>
+	
+	<p>A paragraph, <strong>strong</strong>, <em>em</em>.</p>
+	
+	<p>Another paragraph, with a list below</p>
+	
+	<ol>
+		<li>First list item</li>
+		<li>Second list item</li>
+		<li>Third list item</li>
+	</ol>
+	
+	<div id="block-3">
+		<p class="internal">this paragraph is inside a div called block-1</p>
+		<p class="internal">so it this paragraph as well</p>
+	</div>
+	
+	<h1 id="heading_4">This is a heading Level 1</h1>
+	
+	<p>A paragraph, <strong>strong</strong>, <em>em</em>.</p>
+	
+	<p>Another paragraph, with a list below</p>
+	
+	<ol>
+		<li>First list item</li>
+		<li>Second list item</li>
+		<li>Third list item</li>
+	</ol>
+	
+	<div id="block-4">
+		<p class="internal">this paragraph is inside a div called block-1</p>
+		<p class="internal">so it this paragraph as well</p>
+	</div>
+	
+	<h1 id="heading_5">This is a heading Level 1</h1>
+	
+	<p>A paragraph, <strong>strong</strong>, <em>em</em>.</p>
+	
+	<p>Another paragraph, with a list below</p>
+	
+	<ol>
+		<li>First list item</li>
+		<li>Second list item</li>
+		<li>Third list item</li>
+	</ol>
+	
+	<div id="block-5">
+		<p class="internal">this paragraph is inside a div called block-1</p>
+		<p class="internal">so it this paragraph as well</p>
+	</div>
+	
+	<h1 id="heading_6">This is a heading Level 1</h1>
+	
+	<p>A paragraph, <strong>strong</strong>, <em>em</em>.</p>
+	
+	<p>Another paragraph, with a list below</p>
+	
+	<ol>
+		<li>First list item</li>
+		<li>Second list item</li>
+		<li>Third list item</li>
+	</ol>
+	
+	<div id="block-6">
+		<p class="internal">this paragraph is inside a div called block-1</p>
+		<p class="internal">so it this paragraph as well</p>
+	</div>
+	
+	<h1 id="heading_7">This is a heading Level 1</h1>
+	
+	<p>A paragraph, <strong>strong</strong>, <em>em</em>.</p>
+	
+	<p>Another paragraph, with a list below</p>
+	
+	<ol>
+		<li>First list item</li>
+		<li>Second list item</li>
+		<li>Third list item</li>
+	</ol>
+	
+	<div id="block-7">
+		<p class="internal">this paragraph is inside a div called block-1</p>
+		<p class="internal">so it this paragraph as well</p>
+	</div>
+	
+	<h1 id="heading_8">This is a heading Level 1</h1>
+	
+	<p>A paragraph, <strong>strong</strong>, <em>em</em>.</p>
+	
+	<p>Another paragraph, with a list below</p>
+	
+	<ol>
+		<li>First list item</li>
+		<li>Second list item</li>
+		<li>Third list item</li>
+	</ol>
+	
+	<div id="block-8">
+		<p class="internal">this paragraph is inside a div called block-1</p>
+		<p class="internal">so it this paragraph as well</p>
+	</div>
+	
+</div>
+
+</body>
+</html>
