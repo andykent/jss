@@ -67,5 +67,5 @@ CONTRIBUTERS
 Andy Kent <andrew.d.kent@gmail.com>
 Daniel Wachsstock <d.wachss@prodigy.net>
 Rafael Santos <shanex.fael@gmail.com>
-Angelo Berios <angelo.berios@adnova.ca>
+Angelo Berios <jss-email@angelo.ca>
 
